@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elite 24 Finds - Today's Best Amazon Deals</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>🏆 Elite 24 Finds</h1>
+                <p>Discover Today's Best Amazon Deals</p>
+            </div>
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Search products...">
+                <select id="categoryFilter">
+                    <option value="">All Categories</option>
+                    <option value="home">Home</option>
+                    <option value="electronics">Electronics</option>
+                    <option value="fashion">Fashion</option>
+                    <option value="sports">Sports</option>
+                    <option value="kitchen">Kitchen</option>
+                </select>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="info-banner">
+            <p>✨ Last updated: <span id="lastUpdated">Loading...</span></p>
+        </section>
+
+        <section class="products-grid" id="productsGrid">
+            <div class="loading">Loading products...</div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Elite 24 Finds. All affiliate links help support this site.</p>
+            <p>Disclaimer: We earn a commission from Amazon purchases made through our affiliate links.</p>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
