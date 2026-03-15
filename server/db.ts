@@ -253,3 +253,22 @@ export async function getFileStorageByProductId(productId: number) {
   if (!db) return [];
   return db.select().from(fileStorage).where(eq(fileStorage.relatedProductId, productId));
 }
+
+// ============ ANALYTICS HELPERS ============
+
+export async function getAnalyticsByPinterestPostId(pinterestPostId: number) {
+  const db = await getDb();
+  if (!db) return [];
+  return db.select().from(analytics).where(eq(analytics.pinterestPostId, pinterestPostId));
+}
+
+// ============ AUTOMATION LOG HELPERS ============
+
+export async function updateAutomationLog(
+  logId: number,
+  data: Partial<typeof automationLogs.$inferInsert>
+) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  return db.update(automationLogs).set(data).where(eq(automationLogs.id, logId));
+}
