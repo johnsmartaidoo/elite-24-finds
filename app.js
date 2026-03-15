@@ -102,7 +102,7 @@ class ProductManager {
                     </div>
                     
                     <div class="product-footer">
-                        <a href="${product.affiliateUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                        <a href="${product.affiliateUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-primary" onclick="trackProductClick(${product.id})">
                             View on Amazon
                         </a>
                         <button class="btn btn-secondary btn-small" onclick="shareProduct('${product.title}', '${product.affiliateUrl}')">
@@ -146,6 +146,19 @@ class ProductManager {
         });
         lastUpdatedElement.textContent = timeString + ' UTC';
     }
+}
+
+// Track product clicks for admin dashboard
+function trackProductClick(productId) {
+    const analytics = JSON.parse(localStorage.getItem('elite24_analytics')) || {
+        totalClicks: 0,
+        productClicks: {}
+    };
+    
+    analytics.totalClicks = (analytics.totalClicks || 0) + 1;
+    analytics.productClicks[productId] = (analytics.productClicks[productId] || 0) + 1;
+    
+    localStorage.setItem('elite24_analytics', JSON.stringify(analytics));
 }
 
 // Share functionality

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elite 24 Finds - Admin Dashboard</title>
+    <link rel="stylesheet" href="admin-styles.css">
+</head>
+<body>
+    <div id="loginContainer" class="login-container">
+        <div class="login-box">
+            <h1>🏆 Elite 24 Finds Admin</h1>
+            <p>Enter your admin password</p>
+            <input type="password" id="adminPassword" placeholder="Admin Password" />
+            <button onclick="loginAdmin()">Login</button>
+            <p id="loginError" class="error-message"></p>
+        </div>
+    </div>
+
+    <div id="dashboardContainer" class="dashboard-container" style="display: none;">
+        <header class="admin-header">
+            <div class="header-content">
+                <h1>🏆 Elite 24 Finds Admin Dashboard</h1>
+                <button class="logout-btn" onclick="logoutAdmin()">Logout</button>
+            </div>
+        </header>
+
+        <nav class="admin-nav">
+            <button class="nav-btn active" onclick="switchTab('overview')">📊 Overview</button>
+            <button class="nav-btn" onclick="switchTab('analytics')">📈 Analytics</button>
+            <button class="nav-btn" onclick="switchTab('products')">📦 Products</button>
+            <button class="nav-btn" onclick="switchTab('settings')">⚙️ Settings</button>
+        </nav>
+
+        <main class="admin-content">
+            <!-- Overview Tab -->
+            <section id="overviewTab" class="tab-content active">
+                <h2>Dashboard Overview</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3>Total Clicks</h3>
+                        <p class="stat-value" id="totalClicks">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Total Products</h3>
+                        <p class="stat-value" id="totalProducts">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Last Updated</h3>
+                        <p class="stat-value" id="lastUpdatedTime">Never</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Automation Status</h3>
+                        <p class="stat-value" id="automationStatus">Active</p>
+                    </div>
+                </div>
+
+                <div class="quick-actions">
+                    <h3>Quick Actions</h3>
+                    <button onclick="runAutomationNow()">🤖 Run Bot Now</button>
+                    <button onclick="exportData()">📥 Export Data</button>
+                    <button onclick="clearAnalytics()">🗑️ Clear Analytics</button>
+                </div>
+            </section>
+
+            <!-- Analytics Tab -->
+            <section id="analyticsTab" class="tab-content">
+                <h2>Click Analytics</h2>
+                <div class="analytics-container">
+                    <div class="chart-placeholder">
+                        <canvas id="clicksChart"></canvas>
+                    </div>
+                    <div class="top-products">
+                        <h3>Top 5 Clicked Products</h3>
+                        <div id="topProductsList"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Products Tab -->
+            <section id="productsTab" class="tab-content">
+                <h2>Product Management</h2>
+                <div class="product-controls">
+                    <button onclick="showAddProductForm()">➕ Add New Product</button>
+                </div>
+
+                <div id="addProductForm" class="form-container" style="display: none;">
+                    <h3>Add New Product</h3>
+                    <input type="text" id="productTitle" placeholder="Product Title" />
+                    <input type="text" id="productDescription" placeholder="Product Description" />
+                    <input type="number" id="productPrice" placeholder="Current Price" step="0.01" />
+                    <input type="number" id="productOriginalPrice" placeholder="Original Price" step="0.01" />
+                    <input type="text" id="productImageUrl" placeholder="Image URL" />
+                    <select id="productCategory">
+                        <option value="">Select Category</option>
+                        <option value="kitchen">Kitchen</option>
+                        <option value="electronics">Electronics</option>
+                        <option value="home">Home</option>
+                        <option value="sports">Sports</option>
+                        <option value="books">Books</option>
+                        <option value="toys">Toys</option>
+                        <option value="beauty">Beauty</option>
+                        <option value="health">Health</option>
+                        <option value="garden">Garden</option>
+                        <option value="automotive">Automotive</option>
+                        <option value="office">Office</option>
+                        <option value="pets">Pets</option>
+                        <option value="music">Music</option>
+                        <option value="cameras">Cameras</option>
+                        <option value="travel">Travel</option>
+                        <option value="baby">Baby</option>
+                        <option value="tools">Tools</option>
+                        <option value="furniture">Furniture</option>
+                        <option value="decor">Decor</option>
+                    </select>
+                    <button onclick="addProduct()">Add Product</button>
+                    <button onclick="cancelAddProduct()">Cancel</button>
+                </div>
+
+                <div class="products-list">
+                    <h3>Current Products</h3>
+                    <div id="productsList"></div>
+                </div>
+            </section>
+
+            <!-- Settings Tab -->
+            <section id="settingsTab" class="tab-content">
+                <h2>Settings</h2>
+                <div class="settings-form">
+                    <h3>Bot Configuration</h3>
+                    <label>
+                        Automation Interval (hours):
+                        <input type="number" id="automationInterval" value="1" min="1" max="24" />
+                    </label>
+                    <label>
+                        Amazon Associate ID:
+                        <input type="text" id="associateId" value="homestore0ba-20" />
+                    </label>
+                    <label>
+                        Pinterest Account ID:
+                        <input type="text" id="pinterestId" value="homestore0315" />
+                    </label>
+                    <button onclick="saveSettings()">💾 Save Settings</button>
+                </div>
+
+                <div class="admin-settings">
+                    <h3>Admin Settings</h3>
+                    <label>
+                        Change Admin Password:
+                        <input type="password" id="newAdminPassword" placeholder="New Password" />
+                    </label>
+                    <button onclick="changeAdminPassword()">Update Password</button>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>
