@@ -7,4 +7,10 @@ export const ENV = {
   isProduction: process.env.NODE_ENV === "production",
   forgeApiUrl: process.env.BUILT_IN_FORGE_API_URL ?? "",
   forgeApiKey: process.env.BUILT_IN_FORGE_API_KEY ?? "",
+  amazonAccessKeyId: process.env.AMAZON_ACCESS_KEY_ID ?? "",
+  amazonSecretKey: process.env.AMAZON_SECRET_KEY ?? "",
+  amazonAssociateId: process.env.AMAZON_ASSOCIATE_ID ?? "homestore0ba-20",
+  pinterestAccessToken: process.env.PINTEREST_ACCESS_TOKEN ?? "",
+  pinterestAccountId: process.env.PINTEREST_ACCOUNT_ID ?? "homestore0315",
+  automationScheduleCron: process.env.AUTOMATION_SCHEDULE_CRON ?? "0 9 * * *",
 };
